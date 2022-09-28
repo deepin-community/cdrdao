@@ -1,0 +1,25 @@
+From: "brian m. carlson" <sandals@crustytoothpaste.net>
+Date: Wed, 11 Jul 2018 13:13:17 -0300
+Subject: This patch fixes the FTBFS by including sys/stat.h.
+
+Origin: vendor
+Bug-Debian: http://bugs.debian.org/625005
+Forwarded: no
+Reviewed-by: gregor herrmann <gregoa@debian.org>
+Last-Update: 2011-10-05
+---
+ dao/ScsiIf-linux.cc | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/dao/ScsiIf-linux.cc b/dao/ScsiIf-linux.cc
+index e4ea416..ef78e57 100644
+--- a/dao/ScsiIf-linux.cc
++++ b/dao/ScsiIf-linux.cc
+@@ -30,6 +30,7 @@
+ #include <assert.h>
+ #include <sys/ioctl.h>
+ #include <glob.h>
++#include <sys/stat.h>
+ #include <asm/param.h>
+ #include <scsi/scsi.h>
+ #include <scsi/sg.h>

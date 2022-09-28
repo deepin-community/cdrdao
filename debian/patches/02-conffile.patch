@@ -1,0 +1,23 @@
+From: Andrew Suffield <asuffield@debian.org>
+Date: Wed, 11 Jul 2018 13:13:17 -0300
+Subject: Add /etc/default/cdrdao to the set of config files read.
+
+---
+ dao/main.cc | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/dao/main.cc b/dao/main.cc
+index 6ff63cf..da1164c 100644
+--- a/dao/main.cc
++++ b/dao/main.cc
+@@ -2342,6 +2342,10 @@ int main(int argc, char **argv)
+     if (settings->read(settingsPath) == 0)
+ 	log_message(3, "Read settings from \"%s\".", settingsPath);
+ 
++    settingsPath = "/etc/default/cdrdao";
++    if (settings->read(settingsPath) == 0)
++	log_message(3, "Read settings from \"%s\".", settingsPath);
++
+     settingsPath = NULL;
+ 
+     if ((homeDir = getenv("HOME")) != NULL) {

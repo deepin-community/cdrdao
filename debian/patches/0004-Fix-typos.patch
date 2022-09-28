@@ -1,0 +1,128 @@
+From: Franciscarlos Santos Soares <prof.franciscarlos@gmail.com>
+Date: Wed, 18 Jul 2018 00:41:19 -0300
+Subject: Fix typos.
+Forwarded: https://github.com/cdrdao/cdrdao/pull/1
+
+---
+ dao/CdrDriver.cc     | 6 +++---
+ dao/PlextorReader.cc | 2 +-
+ dao/cdrdao.man       | 2 +-
+ dao/main.cc          | 6 +++---
+ trackdb/Cue2Toc.cc   | 2 +-
+ utils/cue2toc.c      | 2 +-
+ 6 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/dao/CdrDriver.cc b/dao/CdrDriver.cc
+index 208152a..c7de52d 100644
+--- a/dao/CdrDriver.cc
++++ b/dao/CdrDriver.cc
+@@ -429,7 +429,7 @@ static CDRVendorTable VENDOR_TABLE[] = {
+   { 97,26,50,  97,48,60, "Lead Data Inc." },
+   { 97,27,50,  97,48,50, "Mitsui Chemicals, Inc." },
+   { 97,34,20,  97,50,20, "Mitsubishi Chemical Corporation" },
+-  { 97,28,20,  97,46,20, "Multi Media Masters & Machinary SA" },
++  { 97,28,20,  97,46,20, "Multi Media Masters & Machinery SA" },
+   { 97,21,40,  0,0,0,    "Optical Disc Manufacturing Equipment" },
+   { 97,27,30,  97,48,30, "Pioneer Video Corporation" },
+   { 97,27,10,  97,48,20, "Plasmon Data systems Ltd." },
+@@ -2188,7 +2188,7 @@ Toc *CdrDriver::readDiskToc(int session, const char *dataFilename)
+     if ((cdToc[i].adrCtl & 0x04) != 0) {
+       if ((trackMode = getTrackMode(i + 1, cdToc[i].start)) ==
+ 	  TrackData::MODE0) {
+-	log_message(-1, "Cannot determine mode of data track %d - asuming MODE1.",
++	log_message(-1, "Cannot determine mode of data track %d - assuming MODE1.",
+ 		i + 1);
+ 	trackMode = TrackData::MODE1;
+       }
+@@ -3254,7 +3254,7 @@ Toc *CdrDriver::readDisk(int session, const char *dataFilename)
+     if ((cdToc[i].adrCtl & 0x04) != 0) {
+       if ((trackMode = getTrackMode(i + 1, cdToc[i].start)) ==
+ 	  TrackData::MODE0) {
+-	log_message(-1, "Cannot determine mode of data track %d - asuming MODE1.",
++	log_message(-1, "Cannot determine mode of data track %d - assuming MODE1.",
+ 		i + 1);
+ 	trackMode = TrackData::MODE1;
+       }
+diff --git a/dao/PlextorReader.cc b/dao/PlextorReader.cc
+index 614804a..d2c3c14 100644
+--- a/dao/PlextorReader.cc
++++ b/dao/PlextorReader.cc
+@@ -940,7 +940,7 @@ int PlextorReader::readAudioRangePlextor(ReadDiskInfo *rinfo, int fd,
+           // write this block's audio data
+           block=repairBlock;
+ 	  //fwrite(repairBlock,1,AUDIO_BLOCK_LEN,fd);
+-          log_message(1,"block %6ld written with %4ld erronous bytes in it!", cab, repairErrors);
++          log_message(1,"block %6ld written with %4ld erroneous bytes in it!", cab, repairErrors);
+         }
+         else
+         {
+diff --git a/dao/cdrdao.man b/dao/cdrdao.man
+index 1314734..18168c5 100644
+--- a/dao/cdrdao.man
++++ b/dao/cdrdao.man
+@@ -339,7 +339,7 @@ is successfully written. It is possible to append another session on such
+ disks, e.g. to create a CD-EXTRA.
+ .TP
+ .BI \--overburn
+-By default cdrdao will not allow to write more data on a medium than
++By default cdrdao will not allow one to write more data on a medium than
+ specified by the current medium. This option allows one to ignore this condition.
+ .TP
+ .BI \--eject
+diff --git a/dao/main.cc b/dao/main.cc
+index da1164c..68fc1c8 100644
+--- a/dao/main.cc
++++ b/dao/main.cc
+@@ -317,7 +317,7 @@ static void printUsage(DaoCommandLine* options)
+ "  --driver <id>           - force usage of specified driver\n"
+ "  --speed <writing-speed> - selects writing speed\n"
+ "  --multi                 - session will not be closed\n"
+-"  --overburn              - allow to overburn a medium\n"
++"  --overburn              - allow one to overburn a medium\n"
+ "  --full-burn             - force burning to the outer disk edge\n"
+ "                            with '--driver generic-mmc-raw'\n"
+ "  --capacity <minutes>    - sets disk capacity for '--full-burn'\n"
+@@ -349,7 +349,7 @@ static void printUsage(DaoCommandLine* options)
+ "                            1: enable buffer under run protection (default)\n"
+ "  --write-speed-control # - 0: disable writing speed control by the drive\n"
+ "                            1: enable writing speed control (default)\n" 
+-"  --overburn              - allow to overburn a medium\n"
++"  --overburn              - allow one to overburn a medium\n"
+ "  --full-burn             - force burning to the outer disk edge\n"
+ "                            with '--driver generic-mmc-raw'\n"
+ "  --capacity <minutes>    - sets disk capacity for '--full-burn'\n"
+@@ -516,7 +516,7 @@ static void printUsage(DaoCommandLine* options)
+ "                            1: enable buffer under run protection (default)\n"
+ "  --write-speed-control # - 0: disable writing speed control by the drive\n"
+ "                            1: enable writing speed control (default)\n" 
+-"  --overburn              - allow to overburn a medium\n"
++"  --overburn              - allow one to overburn a medium\n"
+ "  --full-burn             - force burning to the outer disk edge\n"
+ "                            with '--driver generic-mmc-raw'\n"
+ "  --capacity <minutes>    - sets disk capacity for '--full-burn'\n"
+diff --git a/trackdb/Cue2Toc.cc b/trackdb/Cue2Toc.cc
+index 398f0dc..cd6a12d 100644
+--- a/trackdb/Cue2Toc.cc
++++ b/trackdb/Cue2Toc.cc
+@@ -621,7 +621,7 @@ determine_session_type(struct trackspec *list)
+         case TrackData::MODE2: case TrackData::MODE2_RAW:
+             mode2 = 1; break;
+         default:	/* should never get here */
+-            err_fail2("Dont know how this could happen, but here "
++            err_fail2("Don't know how this could happen, but here "
+                       "is a track with an unknown mode :|");
+         }
+         track = track->next;
+diff --git a/utils/cue2toc.c b/utils/cue2toc.c
+index ce57d34..6330ea7 100644
+--- a/utils/cue2toc.c
++++ b/utils/cue2toc.c
+@@ -644,7 +644,7 @@ determine_session_type(struct trackspec *list)
+ 		case MODE2: case MODE2_RAW:
+ 			mode2 = 1; break;
+ 		default:	/* should never get here */
+-			err_fail2("Dont know how this could happen, but here "
++			err_fail2("Don't know how this could happen, but here "
+ 				 "is a track with an unknown mode :|");
+ 		}
+ 		track = track->next;
